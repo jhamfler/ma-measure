@@ -6,8 +6,8 @@ echo started
 env
 echo ""
 
-for i in "$@"
+# call 100 times - load balancer handles the rest
+for i in $(seq 1 100)
 do
-	echo $i
-	curl -v "http://"$i":55555/"
+	curl -v "http://ue.default.svc.cluster.local:55555/"
 done
