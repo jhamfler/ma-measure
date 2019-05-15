@@ -10,11 +10,11 @@ echo ""
 
 if [ -z "$TIMES" ]
 then
-	TIMES=10000
+	TIMES=1000
 fi
 
 # call 100 times - load balancer handles the rest
-for i in {1..$TIMES}
+for i in $(seq 1 $TIMES)
 do
 	curl -v "http://ue.default.svc.cluster.local:55555/" &
 	pids[${i}]=$!
