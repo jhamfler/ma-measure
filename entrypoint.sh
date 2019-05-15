@@ -24,6 +24,6 @@ done
 # wait for every call to finish
 for pid in ${pids[*]}
 do
-	waid $pid
+	wait $pid
 done
 echo done
