@@ -1,4 +1,6 @@
 #!/bin/bash
+set -m
+
 ips=()
 ip=
 
@@ -12,3 +14,6 @@ do
 	curl -v "http://ue.default.svc.cluster.local:55555/" &
 	sleep 0.001
 done
+
+wait
+echo done
