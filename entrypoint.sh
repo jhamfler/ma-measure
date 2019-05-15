@@ -17,8 +17,13 @@ fi
 for i in {1..$TIMES}
 do
 	curl -v "http://ue.default.svc.cluster.local:55555/" &
+	pids[${i}]=$!
 	sleep 0.001
 done
 
-wait
+# wait for every call to finish
+for pid in ${pids[*]}
+do
+	waid $pid
+done
 echo done
