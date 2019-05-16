@@ -13,10 +13,10 @@ then
 	TIMES=1000
 fi
 
-# call 100 times - load balancer handles the rest
+# call x times - load balancer handles the rest
 for i in $(seq 1 $TIMES)
 do
-	curl -v "http://ue.default.svc.cluster.local:55555/" &
+	curl "http://ue.default.svc.cluster.local:55555/" &
 	pids[${i}]=$!
 	sleep 0.001
 done
@@ -24,6 +24,9 @@ done
 # wait for every call to finish
 for pid in ${pids[*]}
 do
+	echo waiting for $pid
 	wait $pid
 done
+
+sleep 3
 echo done
