@@ -8,6 +8,13 @@ echo started
 env
 echo ""
 
+# introduced to give istio proxy time to connect to pilot
+if [ -z "$DELAY" ]
+then
+	DELAY=10
+fi
+sleep $DELAY
+
 if [ -z "$TIMES" ]
 then
 	TIMES=1000
